@@ -6,13 +6,15 @@ from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_sco
 import pickle
 import time
 
+subject_id = 4
+
 np.random.seed(33)
 
 # Load and preprocess dataset
-dataset_dir = "../../pre_processed_dataset/3D_CNN/raw_data/"
-with open(dataset_dir + "1_108_shuffle_dataset_3D_win_10.pkl", "rb") as fp:
+dataset_dir = "../../training dataset for CRNN/3D_CNN/"
+with open(dataset_dir + str(subject_id) + "_shuffle_dataset_3D_win_10.pkl", "rb") as fp:
     datasets = pickle.load(fp)
-with open(dataset_dir + "1_108_shuffle_labels_3D_win_10.pkl", "rb") as fp:
+with open(dataset_dir + str(subject_id) + "_shuffle_labels_3D_win_10.pkl", "rb") as fp:
     labels = pickle.load(fp)
 
 window_size = 10
@@ -25,13 +27,13 @@ train_y, test_y = labels[split], labels[~split]
 
 # Parameters
 input_height, input_width, input_channel_num = 10, 11, 1
-n_labels = 5
+n_labels = 6 # 5 -> 6
 fc_size = 1024
 n_lstm_layers = 2
 dropout_prob = 0.5
 learning_rate = 1e-4
 batch_size = 300
-training_epochs = 300
+training_epochs = 10 # 300 -> 10
 
 # Build the model
 inputs = tf.keras.Input(shape=(window_size, input_height, input_width, input_channel_num))
