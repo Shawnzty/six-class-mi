@@ -6,7 +6,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_sco
 import pickle
 import time
 
-subject_id = 4
+subject_id = 1
 
 np.random.seed(33)
 
