@@ -6,7 +6,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_sco
 import pickle
 import time
 
-subject_id = 1
+subject_id = 7
 
 np.random.seed(33)
 
@@ -16,6 +16,8 @@ with open(dataset_dir + str(subject_id) + "_shuffle_dataset_3D_win_10.pkl", "rb"
     datasets = pickle.load(fp)
 with open(dataset_dir + str(subject_id) + "_shuffle_labels_3D_win_10.pkl", "rb") as fp:
     labels = pickle.load(fp)
+
+print("\n reading: " + dataset_dir + str(subject_id) + "_shuffle_dataset_3D_win_10.pkl \n")
 
 window_size = 10
 datasets = datasets.reshape(len(datasets), window_size, 10, 11, 1)
